@@ -18,7 +18,6 @@ function AnimalList() {
     {
       species: "Penguin",
       name: "Olly",
-      dateOfBirth: new Date(),
     },
     {
       species: "Lion",
@@ -40,7 +39,12 @@ function AnimalList() {
           <tr>
             <td>{animal.species}</td>
             <td>{animal.name}</td>
-            <td>{animal.dateOfBirth.getFullYear()}</td>
+
+            {animal.hasOwnProperty("dateOfBirth") ? (
+              <td>{animal.dateOfBirth.getFullYear()}</td>
+            ) : (
+              <td>Unknown</td>
+            )}
           </tr>
         ))}
       </table>
