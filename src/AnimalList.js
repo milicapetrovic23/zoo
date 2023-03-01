@@ -1,5 +1,6 @@
+import React, { useState } from "react";
 function AnimalList() {
-  const animals = [
+  let list = [
     {
       species: "Giant panda",
       name: "Little",
@@ -26,6 +27,11 @@ function AnimalList() {
     },
   ];
 
+  const [animals, setAnimals] = useState(list);
+
+  const removeAnimal = (i) =>
+    setAnimals(animals.filter((animal, index) => index !== i));
+
   return (
     <div>
       <h2>Animals:</h2>
@@ -35,7 +41,7 @@ function AnimalList() {
           <th>Name</th>
           <th>Date of birth</th>
         </tr>
-        {animals.map((animal) => (
+        {animals.map((animal, index) => (
           <tr>
             <td>{animal.species}</td>
             <td>{animal.name}</td>
@@ -45,6 +51,9 @@ function AnimalList() {
             ) : (
               <td>Unknown</td>
             )}
+            <td>
+              <button onClick={removeAnimal(index)}>Remove animal</button>
+            </td>
           </tr>
         ))}
       </table>
