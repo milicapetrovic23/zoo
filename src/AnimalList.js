@@ -50,7 +50,10 @@ function AnimalList() {
               <td>Unknown</td>
             )}
             <td>
-              <button onClick={() => setAnimals(animals=>animals.filter((a, i) => i !== index))}>Remove animal</button>
+              <button onClick={() => setAnimals(animals.filter((a, i) => i !== index))}>Remove animal</button>
+            </td>
+            <td>
+              <button onClick={() => setAnimals([...animals.splice(index, 1), ...animals])}>Move to top</button>
             </td>
           </tr>
         ))}
