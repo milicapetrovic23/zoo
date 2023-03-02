@@ -1,20 +1,21 @@
 import React, { useState } from "react";
 function AnimalList() {
+  const heading = ["Species", "Name", "Year of birth"]
   let list = [
     {
       species: "Giant panda",
       name: "Little",
-      dateOfBirth: new Date(),
+      yearOfBirth: new Date(),
     },
     {
       species: "Chimpanzee",
       name: "Marcell",
-      dateOfBirth: new Date(),
+      yearOfBirth: new Date(),
     },
     {
       species: "Red panda",
       name: "Tony",
-      dateOfBirth: new Date(),
+      yearOfBirth: new Date(),
     },
     {
       species: "Penguin",
@@ -23,36 +24,33 @@ function AnimalList() {
     {
       species: "Lion",
       name: "Queen",
-      dateOfBirth: new Date(),
+      yearOfBirth: new Date(),
     },
   ];
 
   const [animals, setAnimals] = useState(list);
 
-  const removeAnimal = (i) =>
-    setAnimals(animals.filter((animal, index) => index !== i));
-
   return (
     <div>
-      <h2>Animals:</h2>
+      <h2>Animals</h2>
       <table>
         <tr>
-          <th>Species</th>
-          <th>Name</th>
-          <th>Date of birth</th>
+          {heading.map((column) => 
+          <th>{column}</th>
+          )}
         </tr>
         {animals.map((animal, index) => (
           <tr>
             <td>{animal.species}</td>
             <td>{animal.name}</td>
 
-            {animal.hasOwnProperty("dateOfBirth") ? (
-              <td>{animal.dateOfBirth.getFullYear()}</td>
+            {animal.hasOwnProperty("yearOfBirth") ? (
+              <td>{animal.yearOfBirth.getFullYear()}</td>
             ) : (
               <td>Unknown</td>
             )}
             <td>
-              <button onClick={removeAnimal(index)}>Remove animal</button>
+              <button onClick={() => setAnimals(animals=>animals.filter((a, i) => i !== index))}>Remove animal</button>
             </td>
           </tr>
         ))}
